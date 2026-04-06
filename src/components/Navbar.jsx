@@ -6,7 +6,8 @@ const links = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Impact", to: "/impact" },
-  { label: "Donate", to: "/donate" }
+  { label: "Blog", to: "/blog" },
+  { label: "Contact", to: "/contact" }
 ];
 
 export default function Navbar({ theme, onToggleTheme }) {

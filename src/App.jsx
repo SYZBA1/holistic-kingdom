@@ -9,6 +9,9 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ImpactPage from "./pages/ImpactPage";
 import DonatePage from "./pages/DonatePage";
+import ContactPage from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 function ScrollTopButton() {
   const [visible, setVisible] = useState(false);
@@ -59,6 +62,9 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/donate" element={<DonatePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
           </Routes>
         </main>
         <Footer />
