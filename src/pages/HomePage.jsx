@@ -3,14 +3,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   Baby,
   BriefcaseBusiness,
-  ChevronLeft,
-  ChevronRight,
   Cross,
   GraduationCap,
   HandCoins,
   HandHeart,
   HeartHandshake,
-  Play,
   Quote,
   Scale,
   Search,
@@ -168,39 +165,6 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={`dot-${idx}`}
-              onClick={() => setHeroIndex(idx)}
-              className={`h-2.5 rounded-full transition ${idx === heroIndex ? "w-8 bg-kingdom-yellow" : "w-2.5 bg-white/65"}`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="absolute bottom-20 right-4 z-20 flex items-center gap-2 sm:right-8">
-          <button
-            onClick={() => setHeroIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
-            className="rounded-full bg-white/20 p-3 text-white backdrop-blur-lg transition hover:scale-105"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            onClick={() => setHeroIndex((prev) => (prev + 1) % heroSlides.length)}
-            className="rounded-full bg-white/20 p-3 text-white backdrop-blur-lg transition hover:scale-105"
-            aria-label="Next slide"
-          >
-            <ChevronRight size={18} />
-          </button>
-          <button
-            className="rounded-full bg-white/20 p-3 text-white backdrop-blur-lg transition hover:scale-105"
-            aria-label="Play impact video"
-          >
-            <Play size={18} />
-          </button>
-        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:px-10 lg:py-24">

@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function GlobalHelpBot() {
   const [open, setOpen] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([{ role: "assistant", text: "Hi! How can we help you change lives today?" }]);
   const endRef = useRef(null);
 
   const replies = useMemo(
@@ -21,14 +22,6 @@ export default function GlobalHelpBot() {
     }),
     []
   );
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOpen(true);
-      setMessages([{ role: "assistant", text: "Hi! How can we help you change lives today?" }]);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -59,14 +52,35 @@ export default function GlobalHelpBot() {
 
   return (
     <div className="fixed bottom-6 right-4 z-[70] md:right-6">
+      {!open && showPreview && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative mb-3 max-w-[220px] rounded-xl bg-white px-4 py-2 text-black shadow-lg dark:bg-kingdom-cream"
+        >
+          <button
+            onClick={() => setShowPreview(false)}
+            className="absolute -left-2 -top-2 rounded-full bg-black p-1 text-white"
+            aria-label="Close preview"
+          >
+            <X size={12} />
+          </button>
+          <p className="text-sm font-semibold">We&apos;re Online!</p>
+          <p className="text-xs">How can we help you today?</p>
+        </motion.div>
+      )}
+
       {open && (
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           className="fixed bottom-20 right-4 z-[71] flex w-[90%] max-w-sm flex-col overflow-hidden rounded-2xl border border-kingdom-green/20 bg-white shadow-xl dark:border-white/15 dark:bg-[#122612] md:right-6"
         >
-          <div className="border-b border-kingdom-green/10 p-4 text-sm font-semibold text-kingdom-green dark:border-white/10 dark:text-kingdom-yellow">
-            Kingdom Assistant
+          <div className="flex items-center justify-between border-b border-kingdom-green/10 p-4 text-sm font-semibold text-kingdom-green dark:border-white/10 dark:text-kingdom-yellow">
+            <span>Kingdom Assistant</span>
+            <button onClick={() => setOpen(false)} aria-label="Close chat">
+              <X size={16} />
+            </button>
           </div>
 
           <div className="max-h-64 flex-1 space-y-2 overflow-y-auto p-4">
@@ -119,11 +133,9 @@ export default function GlobalHelpBot() {
       <button
         onClick={() => {
           setOpen((v) => !v);
-          if (!open && messages.length === 0) {
-            setMessages([{ role: "assistant", text: "Hi! How can we help you change lives today?" }]);
-          }
+          setShowPreview(false);
         }}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-kingdom-green text-kingdom-yellow shadow-2xl md:h-16 md:w-16"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-kingdom-green text-kingdom-yellow shadow-2xl transition hover:scale-105 md:h-14 md:w-14"
       >
         <MessageCircle />
       </button>
