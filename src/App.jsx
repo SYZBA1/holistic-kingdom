@@ -54,7 +54,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen transition-colors duration-500">
+      <div className="min-h-screen overflow-x-hidden transition-colors duration-500">
         <Navbar theme={theme} onToggleTheme={toggleTheme} />
         <main>
           <Routes>

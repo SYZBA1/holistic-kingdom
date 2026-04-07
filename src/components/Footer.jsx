@@ -40,8 +40,8 @@ export default function Footer() {
         <div>
           <p className="font-semibold text-kingdom-yellow">Contact</p>
           <p className="mt-3 text-sm text-kingdom-cream/80">hello@kingdomresource.org</p>
-          <p className="text-sm text-kingdom-cream/80">+254 700 000 000</p>
-          <p className="mt-2 text-sm text-kingdom-cream/80">Nairobi, Kenya</p>
+          <p className="text-sm text-kingdom-cream/80">+251 9XX XXX XXX</p>
+          <p className="mt-2 text-sm text-kingdom-cream/80">Addis Ababa, Ethiopia</p>
         </div>
       </div>
     </footer>

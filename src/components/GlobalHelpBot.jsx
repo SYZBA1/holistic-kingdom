@@ -58,12 +58,12 @@ export default function GlobalHelpBot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[70]">
+    <div className="fixed bottom-6 right-4 z-[70] md:right-6">
       {open && (
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-3 flex w-80 flex-col overflow-hidden rounded-2xl border border-kingdom-green/20 bg-white shadow-xl dark:border-white/15 dark:bg-[#122612]"
+          className="fixed bottom-20 right-4 z-[71] flex w-[90%] max-w-sm flex-col overflow-hidden rounded-2xl border border-kingdom-green/20 bg-white shadow-xl dark:border-white/15 dark:bg-[#122612] md:right-6"
         >
           <div className="border-b border-kingdom-green/10 p-4 text-sm font-semibold text-kingdom-green dark:border-white/10 dark:text-kingdom-yellow">
             Kingdom Assistant
@@ -123,7 +123,7 @@ export default function GlobalHelpBot() {
             setMessages([{ role: "assistant", text: "Hi! How can we help you change lives today?" }]);
           }
         }}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-kingdom-green text-kingdom-yellow shadow-2xl"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-kingdom-green text-kingdom-yellow shadow-2xl md:h-16 md:w-16"
       >
         <MessageCircle />
       </button>
