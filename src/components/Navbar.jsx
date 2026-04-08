@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Bell, Menu, Moon, Sun, X } from "lucide-react";
 
 const links = [
   { label: "Home", to: "/" },
@@ -54,13 +54,29 @@ export default function Navbar({ theme, onToggleTheme }) {
           </Link>
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-xl border border-kingdom-green/20 p-2 text-kingdom-green dark:border-white/20 dark:text-kingdom-cream md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            className="relative rounded-xl border border-kingdom-green/20 p-2 text-kingdom-green transition hover:scale-105 dark:border-white/20 dark:text-kingdom-cream"
+            aria-label="Notifications"
+          >
+            <Bell size={18} />
+            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />
+          </button>
+          <button
+            onClick={onToggleTheme}
+            className="rounded-xl border border-kingdom-green/20 p-2 text-kingdom-green transition hover:scale-105 dark:border-white/20 dark:text-kingdom-yellow"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-xl border border-kingdom-green/20 p-2 text-kingdom-green transition hover:scale-105 dark:border-white/20 dark:text-kingdom-cream"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
       {open && (
