@@ -20,18 +20,48 @@ import AnimateInView from "../components/AnimateInView";
 
 const heroSlides = [
   {
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=2200&q=80",
-    alt: "Families receiving support in Ethiopia"
+    image: "https://i.pinimg.com/1200x/14/18/8e/14188e5df2a2b975962cbc046cd65931.jpg",
+    alt: "Families receiving support in Ethiopia",
+    heading: "Strengthening Families, Transforming Lives",
+    subtext: "We support families to build stronger relationships and create stable, thriving communities."
   },
   {
-    image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=2200&q=80",
-    alt: "Women and children in an Ethiopian community"
+    image: "https://images.unsplash.com/photo-1741183396267-b6e3b2aaa38a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Economic Empowerment",
+    heading: "Empowering Communities Through Opportunity",
+    subtext: "We equip individuals with the skills and resources needed for sustainable economic growth."
+  },
+  {
+    image: "https://plus.unsplash.com/premium_photo-1702634273888-1999beb6120b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D",
+    alt: "Business Development",
+    heading: "Empowering Communities Through Opportunity",
+    subtext: "We equip individuals with the skills and resources needed for sustainable economic growth."
+  },
+  {
+    image: "https://i.pinimg.com/736x/ad/3b/82/ad3b826bac86143d8bd6e032798d34f4.jpg",
+    alt: "OVC care and support in Ethiopia",
+    heading: "Supporting the Next Generation",
+    subtext: "We care for vulnerable children by providing support, protection, and opportunity."
   },
   {
     image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=2200&q=80",
-    alt: "Local leadership and community empowerment in Ethiopia"
+    alt: "Local leadership and community empowerment in Ethiopia",
+    heading: "Raising Leaders for Lasting Change",
+    subtext: "We develop leaders who inspire transformation and guide communities toward a better future."
+  },
+  {
+    image: "https://i.pinimg.com/736x/52/40/35/524035366053b2991f52ae8474bcb688.jpg",
+    alt: "Peace & Reconciliation",
+    heading: "Building Peace and Restoring Hope",
+    subtext: "We bring people together to heal, reconcile, and build stronger communities."
   }
 ];
+
+const fallbackHeroCopy = {
+  heading: "Transforming Lives Through Holistic Care",
+  subtext:
+    "We exist to bring lasting change to families and communities through empowerment, leadership, and sustainable development."
+};
 
 const ministry = [
   { title: "Spiritual Growth", icon: Cross, desc: "Strengthening faith and hope in families and communities." },
@@ -107,6 +137,9 @@ const faqs = [
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
+  const currentSlide = heroSlides[heroIndex] ?? {};
+  const heroHeading = currentSlide.heading ?? fallbackHeroCopy.heading;
+  const heroSubtext = currentSlide.subtext ?? fallbackHeroCopy.subtext;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -137,17 +170,13 @@ export default function HomePage() {
             key={`hero-copy-${heroIndex}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="max-w-3xl text-center md:text-left"
+            exit={{ opacity: 0, y: -18 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl text-center md:text-left"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-kingdom-yellow">To change lives !!</p>
-            <h1 className="mt-4 font-serif text-4xl text-white md:text-6xl">
-              Transforming Families and Communities Through Holistic Care
-            </h1>
-            <p className="mt-5 text-lg text-white/90">
-              We exist to bring lasting change to families and vulnerable communities through empowerment, leadership,
-              and sustainable development.
-            </p>
+            <h1 className="mt-4 font-serif text-4xl font-bold text-white md:text-6xl">{heroHeading}</h1>
+            <p className="mt-5 text-lg text-white/90">{heroSubtext}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-4 md:justify-start">
               <Link
                 to="/donate"
